@@ -177,6 +177,7 @@
 
   if (quickBtn) {
     quickBtn.addEventListener('click', (e) => {
+      console.debug('[image.js] quickMenuBtn clicked');
       e.stopPropagation();
       const open = quickMenu && quickMenu.style.display === 'block';
       showQuickMenu(!open);
@@ -209,12 +210,14 @@
 
   if (fileInput) {
     fileInput.addEventListener('change', async (e) => {
+      console.debug('[image.js] file input change event', e);
       const f = e.target.files && e.target.files[0];
       if (!f) return;
 
       // show preview as user message
       const reader = new FileReader();
       reader.onload = async function(ev) {
+        console.debug('[image.js] file reader loaded', f.name);
         const dataUrl = ev.target.result;
         const imgHtml = `<img src="${dataUrl}" style="max-width:220px;border-radius:8px;display:block;margin-bottom:6px;">`;
         appendMessage(imgHtml, true);
@@ -231,6 +234,8 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ image: base64, filename: f.name })
           });
+
+          console.debug('[image.js] POST /api/analyze_image sent, awaiting response...');
 
           if (!resp.ok) {
             const t = await resp.text().catch(() => 'Server error');
