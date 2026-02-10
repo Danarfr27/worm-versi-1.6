@@ -328,6 +328,62 @@
   backdrop-filter: blur(6px);
 }
 
+/* Left area for quick actions (plus button) */
+.input-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#quickMenuBtn {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: #fff;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+#quickMenuBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 26, 26, 0.4);
+}
+
+#quickMenuBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Quick menu panel */
+#quickMenu {
+  min-width: 220px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-color);
+  padding: 6px;
+}
+
+.quick-item {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.quick-item:hover {
+  background: var(--bg-card-light);
+}
+
 .input-wrapper {
   flex: 1;
   position: relative;
@@ -456,6 +512,12 @@
     padding: 8px;
     flex-shrink: 0;
     align-self: center;
+  }
+
+  #quickMenuBtn {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
   }
 
   .send-btn svg {
